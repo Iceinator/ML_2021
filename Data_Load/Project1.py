@@ -7,6 +7,12 @@ Created on Mon Feb 22 16:49:38 2021
 
 import numpy as np
 import pandas as pd
+from pathlib import Path
+import csv
+
+path = Path(__file__).parent / "../Data_Load/LA_Ozone.csv"
+with path.open() as f:
+    test = list(csv.reader(f))
 
 #%% Load data
 
