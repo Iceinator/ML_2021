@@ -8,17 +8,15 @@ Created on Mon Feb 22 16:49:38 2021
 import numpy as np
 import pandas as pd
 from pathlib import Path
-import csv
 
 path = Path(__file__).parent / "../Data_Load/LA_Ozone.csv"
 with path.open() as f:
-    test = list(csv.reader(f))
+    df = pd.read_csv(f)
 
 #%% Load data
 
 # Load the Iris csv data using the Pandas library
-filename = 'C:/Users/Nicklas Rasmussen/Desktop/DTU/6.semester/02450_Intro to Macine Learning and Data Mining/LA_Ozone.csv'
-df = pd.read_csv(filename)
+#df = pd.read_csv(f)
 
 # Pandas returns a dataframe, (df) which could be used for handling the data.
 # We will however convert the dataframe to numpy arrays for this course as 
