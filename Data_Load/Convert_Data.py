@@ -15,12 +15,11 @@ with path.open() as f:
 
 
 #% Load data
-
 raw_data = df.values
 
 cols = range(0, 10) 
 X = np.array(list(raw_data[:, cols]),dtype=np.float)
-
+#%
 # As many of the units in the data is given in the imperial system, the header is first changed to also include units. 
 # Later, the data is converted to the metric system
 attributeNames = np.asarray(df.columns[cols])
@@ -51,8 +50,9 @@ X[:,5] = ibh
 Celcius_ibt = np.round((X[:,7]-32)*(5/9),1)
 X[:,7] = Celcius_ibt
 
+
 #%% The data is now converted. Adds the attributeNames and saves as a new csv-file
-metric_data = np.vstack((attributeNames,X) )
-df = pd.DataFrame(metric_data, columns = attributeNames)
-pd.DataFrame(X).to_csv('LA_Ozone_metric.csv')
+df = pd.DataFrame(X, columns = attributeNames)
+
+pd.DataFrame(df).to_csv('C:/Users/Nicklas Rasmussen/Desktop/DTU/6.semester/02450_Intro to Macine Learning and Data Mining/Projekt1/ML_2021/Data/LA_Ozone_metric.csv',index=False)
 
