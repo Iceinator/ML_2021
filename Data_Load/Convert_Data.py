@@ -23,7 +23,7 @@ X = np.array(list(raw_data[:, cols]),dtype=np.float)
 # As many of the units in the data is given in the imperial system, the header is first changed to also include units. 
 # Later, the data is converted to the metric system
 attributeNames = np.asarray(df.columns[cols])
-attributeNames = ['Ozone [ppm]','Vandenberg height [m]', 'Wind speed [m/s]','Humidity [%]','Temperature [C]','Inverse Base Temperaure [C]','Dpg [mm Hg]','Inverse Base Height [m]','Visibility [m]','doy [days]']
+attributeNames = ['Oz ','VH', 'WS','H','T','IBT','Dpg','IBH','Vi','doy']
 
 # Convert the variables to the metric system.
 
@@ -37,9 +37,9 @@ X[:,4] = Celcius_t
 windspeed = np.round(X[:,2]*0.44704,1)
 X[:,2] = windspeed
 
-# Visibility (from miles to meters in order to minimize
+# Visibility (from miles to km in order to minimize
 # the magnitude of the rounding)
-visibility = np.round(X[:,8]*1609.34,1)
+visibility = np.round(X[:,8]*1.60934,1)
 X[:,8] = visibility
 
 # Inversion Base Height (from feet to m)
@@ -51,7 +51,7 @@ Celcius_ibt = np.round((X[:,7]-32)*(5/9),1)
 X[:,7] = Celcius_ibt
 
 
-#%% The data is now converted. Adds the attributeNames and saves as a new csv-file
+#% The data is now converted. Adds the attributeNames and saves as a new csv-file
 df = pd.DataFrame(X, columns = attributeNames)
 
 pd.DataFrame(df).to_csv('C:/Users/Nicklas Rasmussen/Desktop/DTU/6.semester/02450_Intro to Macine Learning and Data Mining/Projekt1/ML_2021/Data/LA_Ozone_metric.csv',index=False)
