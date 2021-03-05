@@ -54,5 +54,5 @@ X[:,7] = Celcius_ibt
 #% The data is now converted. Adds the attributeNames and saves as a new csv-file
 df = pd.DataFrame(X, columns = attributeNames)
 
-pd.DataFrame(df).to_csv('C:/Users/Nicklas Rasmussen/Desktop/DTU/6.semester/02450_Intro to Macine Learning and Data Mining/Projekt1/ML_2021/Data/LA_Ozone_metric.csv',index=False)
-
+#pd.DataFrame(df).to_csv('C:/Users/Nicklas Rasmussen/Desktop/DTU/6.semester/02450_Intro to Macine Learning and Data Mining/Projekt1/ML_2021/Data/LA_Ozone_metric.csv',index=False)
+pd.DataFrame(df).to_csv("../Data_Load/LA_Ozone_metric.csv",index=False)
