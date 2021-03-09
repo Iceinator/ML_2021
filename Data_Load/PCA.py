@@ -21,9 +21,13 @@ p2 = np.percentile(ozone,70) # 14
 
 # Overview of data
 plt.boxplot(ozone)
+plt.title('Boxplot of Ozone Concentration')
+plt.xticks(range(1))
+plt.ylabel('Ozone [ppm]')
 plt.show()
-plt.hist(ozone)
-xlabel('Ozone')
+plt.hist(ozone,edgecolor='black')
+plt.title('Histogram of Ozone Concentration')
+xlabel('Ozone [ppm]')
 ylabel('Frequency')
 plt.show()
 
@@ -50,7 +54,9 @@ y = np.array([classDict[cl] for cl in classLabels])
 # Finally, the last variable that we need to have the dataset in the 
 # "standard representation" for the course, is the number of classes, C:
 C = len(classNames)
-#% PCA (Exercise 2.1.3, 2.1.2, )
+
+
+
 
 # Subtract mean value from data (mean gøres til en matrix for at dimensioner passer)
 Y = X - np.ones((N,1))*X.mean(axis=0)
@@ -76,39 +82,14 @@ plt.ylabel('Variance explained');
 plt.legend(['Individual','Cumulative','Threshold'])
 plt.grid()
 plt.show()
-print('Ran Exercise 2.1.3')
+#print('Ran Exercise 2.1.3')
 
-#% Ex 2.1.2
-# Data attributes to be plotted
-i = 1
-j = 6
 
-# Make a simple plot of the i'th attribute against the j'th attribute
-# Notice that X is of matrix type (but it will also work with a numpy array)
-# X = np.array(X) #Try to uncomment this line
-plot(X[:, i], X[:, j], 'o')
+#%% Standardized data projected onto PC i and j 
 
-# %
-# Make another more fancy plot that includes legend, class labels, 
-# attribute names, and a title.
-f = figure()
-title('Ozone data')
+Y = X - np.ones((N,1))*X.mean(axis=0)
+Y = Y*(1/np.std(X,0))
 
-for c in range(C):
-    # select indices belonging to class c:
-    print(c)
-    class_mask = y==c
-    plot(X[class_mask,i], X[class_mask,j], 'o',alpha=.3)
-
-legend(classNames)
-xlabel(attributeNames[i])
-ylabel(attributeNames[j])
-
-# Output result to screen
-show()
-print('Ran Exercise 2.1.2')
-
-#% 
 U,S,Vh = svd(Y,full_matrices=False)
 # scipy.linalg.svd returns "Vh", which is the Hermitian (transpose)
 # of the vector V. So, for us to obtain the correct V, we transpose:
@@ -119,11 +100,11 @@ Z = Y @ V
 
 # Indices of the principal components to be plotted
 i = 1
-j = 2
+j = 0
 
 # Plot PCA of the data
 f = figure()
-title('Ozone data: PCA')
+title('Ozone data: PC1 vs PC2')
 #Z = array(Z)
 for c in range(C):
     # select indices belonging to class c:
@@ -136,25 +117,153 @@ ylabel('PC{0}'.format(j+1))
 # Output result to screen
 show()
 
+
+# Indices of the principal components to be plotted
+i = 0
+j = 2
+
+# Plot PCA of the data
+f = figure()
+title('Ozone data: PC1 vs PC3')
+#Z = array(Z)
+for c in range(C):
+    # select indices belonging to class c:
+    class_mask = y==c
+    plot(Z[class_mask,i], Z[class_mask,j], 'o', alpha=.5)
+legend(classNames)
+xlabel('PC{0}'.format(i+1))
+ylabel('PC{0}'.format(j+1))
+
+# Output result to screen
+show()
+
+
+# Indices of the principal components to be plotted
+i = 0
+j = 3
+
+# Plot PCA of the data
+f = figure()
+title('Ozone data: PC2 vs PC3')
+#Z = array(Z)
+for c in range(C):
+    # select indices belonging to class c:
+    class_mask = y==c
+    plot(Z[class_mask,i], Z[class_mask,j], 'o', alpha=.5)
+    #plt.plot(Z[y==c,i], Z[y==c,j], '.', alpha=.5)
+legend(classNames)
+xlabel('PC{0}'.format(i+1))
+ylabel('PC{0}'.format(j+1))
+
+# Output result to screen
+show()
+
+
+# Indices of the principal components to be plotted
+i = 0
+j = 4
+
+# Plot PCA of the data
+f = figure()
+title('Ozone data: PC2 vs PC3')
+#Z = array(Z)
+for c in range(C):
+    # select indices belonging to class c:
+    class_mask = y==c
+    plot(Z[class_mask,i], Z[class_mask,j], 'o', alpha=.5)
+    #plt.plot(Z[y==c,i], Z[y==c,j], '.', alpha=.5)
+legend(classNames)
+xlabel('PC{0}'.format(i+1))
+ylabel('PC{0}'.format(j+1))
+
+# Output result to screen
+show()
+
+
+
+# Indices of the principal components to be plotted
+i = 1
+j = 2
+
+# Plot PCA of the data
+f = figure()
+title('Ozone data: PC2 vs PC3')
+#Z = array(Z)
+for c in range(C):
+    # select indices belonging to class c:
+    class_mask = y==c
+    plot(Z[class_mask,i], Z[class_mask,j], 'o', alpha=.5)
+    #plt.plot(Z[y==c,i], Z[y==c,j], '.', alpha=.5)
+legend(classNames)
+xlabel('PC{0}'.format(i+1))
+ylabel('PC{0}'.format(j+1))
+
+# Output result to screen
+show()
+
+
+# Indices of the principal components to be plotted
+i = 1
+j = 3
+
+# Plot PCA of the data
+f = figure()
+title('Ozone data: PC2 vs PC3')
+#Z = array(Z)
+for c in range(C):
+    # select indices belonging to class c:
+    class_mask = y==c
+    plot(Z[class_mask,i], Z[class_mask,j], 'o', alpha=.5)
+    #plt.plot(Z[y==c,i], Z[y==c,j], '.', alpha=.5)
+legend(classNames)
+xlabel('PC{0}'.format(i+1))
+ylabel('PC{0}'.format(j+1))
+
+# Output result to screen
+show()
+
+# Indices of the principal components to be plotted
+i = 1
+j = 4
+
+# Plot PCA of the data
+f = figure()
+title('Ozone data: PC2 vs PC3')
+#Z = array(Z)
+for c in range(C):
+    # select indices belonging to class c:
+    class_mask = y==c
+    plot(Z[class_mask,i], Z[class_mask,j], 'o', alpha=.5)
+    #plt.plot(Z[y==c,i], Z[y==c,j], '.', alpha=.5)
+legend(classNames)
+xlabel('PC{0}'.format(i+1))
+ylabel('PC{0}'.format(j+1))
+
+# Output result to screen
+show()
+
+
+
 print('Ran Exercise 2.1.4')
 
 
 
-
-
-
 #%%
+# Outcomment all "single" #'s in order to do standardized data
+#U,S,Vh = svd(Y,full_matrices=False)
+#V = Vh.T    '
+## We saw in 2.1.3 that the first 3 components explaiend more than 90
+## percent of the variance. Let's look at their coefficients:
 
-# We saw in 2.1.3 that the first 3 components explaiend more than 90
-# percent of the variance. Let's look at their coefficients:
-pcs = [0,1,2,3,4,5]
+    
+pcs = [0,1,2,3,4]
 legendStrs = ['PC'+str(e+1) for e in pcs]
 c = ['r','g','b']
 bw = .2
 r = np.arange(1,M+1)
 plt.figure(22)
 for i in pcs:    
-    plt.bar(r+i*bw, V[:,i], width=bw)
+    plt.bar(r+i*bw, V[:,i], width=bw,edgecolor="black")
 plt.xticks(r+bw, attributeNames)
 plt.xlabel('Attributes')
 plt.ylabel('Component coefficients')
@@ -175,7 +284,7 @@ print(V[:,1].T)
 # Projection of water class onto the 2nd principal component.
 high = Y[y==0,:]
 
-print('First water observation')
+print('First high observation')
 print(high[0,:])
 
 # Based on the coefficients and the attribute values for the observation
@@ -188,29 +297,12 @@ print('...and its projection onto PC2')
 print(high[0,:]@V[:,1])
 # Try to explain why?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Exercise  2.1.5
 
 #%%
 ## exercise 2.1.6
 r = np.arange(1,X.shape[1]+1)
-plt.bar(r, np.std(X,axis=0))
+plt.bar(r, np.std(X,axis=0),edgecolor = 'black')
 plt.xticks(r, attributeNames)
 plt.ylabel('Standard deviation')
 plt.xlabel('Attributes')
@@ -304,4 +396,3 @@ for k in range(2):
 
 plt.show()
         
-         
