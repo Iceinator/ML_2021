@@ -7,7 +7,8 @@ Created on Thu Mar  4 14:05:25 2021
 
 # From exercise 2.1.3
 from Load_Data import *
-from matplotlib.pyplot import figure, plot, title, xlabel, ylabel, show, legend
+import os
+from matplotlib.pyplot import figure, plot, title, xlabel, ylabel, show, legend, subplot, xticks, yticks
 #% Categorization
 # Catergorizing concentration of Ozone as high, medium and low
 # Beregner de 3 kvartiler for at inddele 
@@ -99,6 +100,33 @@ V = Vh.T
 Z = Y @ V
 
 # Indices of the principal components to be plotted
+NumAtr = 5
+
+figure(figsize=(14,14))
+title('principal components')
+for i in range(5):
+    for j in range(5):
+            subplot(NumAtr, NumAtr, i*NumAtr + j + 1)
+            for c in range(C):
+           # select indices belonging to class c:
+               class_mask = y==c
+               plot(Z[class_mask,i], Z[class_mask,j], '.', alpha=.5)
+               
+            if i==NumAtr-1:
+                xlabel('PC{0}'.format(j+1))
+            else:
+                xticks([])
+            if j==0:
+                ylabel('PC{0}'.format(i+1))
+            else:
+                yticks([])
+                
+
+           
+        
+show
+
+'''
 i = 1
 j = 0
 
@@ -246,7 +274,7 @@ show()
 
 print('Ran Exercise 2.1.4')
 
-
+'''
 
 #%%
 # Outcomment all "single" #'s in order to do standardized data
