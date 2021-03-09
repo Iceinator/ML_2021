@@ -8,7 +8,8 @@ Created on Mon Feb 22 16:49:38 2021
 import numpy as np
 import pandas as pd
 from pathlib import Path
-
+#import os
+#os.chdir('C:/Users/Nicklas Rasmussen/Desktop/DTU/6.semester/02450_Intro to Macine Learning and Data Mining/Projekt1/ML_2021/Data_Load')
 path = Path(__file__).parent / "../Data_Load/LA_Ozone.csv"
 with path.open() as f:
     df = pd.read_csv(f)

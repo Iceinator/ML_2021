@@ -11,9 +11,6 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from scipy.linalg import svd
 
-#import os
-#os.chdir('C:/Users/Nicklas Rasmussen/Desktop/DTU/6.semester/02450_Intro to Macine Learning and Data Mining/Projekt1/ML_2021/Data_Load')
-
 path = Path(__file__).parent / "../Data/LA_Ozone_metric.csv"
 with path.open() as f:
     df = pd.read_csv(f)
